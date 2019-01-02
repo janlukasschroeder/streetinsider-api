@@ -1,0 +1,30 @@
+{
+  "name": "streetinsider-api",
+  "version": "1.0.0",
+  "description": "streetinsider.com real-time news API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janlukasschroeder/streetinsider-api.git"
+  },
+  "keywords": [
+    "streetinsider.com",
+    "API",
+    "websockets",
+    "real-time",
+    "news"
+  ],
+  "author": "Jan Schroeder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/janlukasschroeder/streetinsider-api/issues"
+  },
+  "homepage": "https://github.com/janlukasschroeder/streetinsider-api#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "ws": "^6.1.2"
+  }
+}
