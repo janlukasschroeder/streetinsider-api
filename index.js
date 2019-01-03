@@ -6,17 +6,18 @@ const webSocketServerUrl = 'wss://cast.streetinsider.com:10443/cast/';
 class StreetInsiderApi extends EventEmitter {
   constructor({ token } = {}) {
     super();
-    this.ws = new WebSocket(webSocketServerUrl);
+
     this.token = token;
 
     this.onOpen = this.onOpen.bind(this);
     this.onMessage = this.onMessage.bind(this);
+    this.onError = this.onError.bind(this);
   }
 
   onOpen() {
     const options = {
       _req: 'auth',
-      token: process.env.TOKEN || this.token,
+      token: this.token,
       _id: Math.random()
     };
     this.ws.send(JSON.stringify(options));
@@ -29,10 +30,16 @@ class StreetInsiderApi extends EventEmitter {
     }
   }
 
+  onError(error) {
+    this.emit('error', error);
+  }
+
   init(token) {
-    this.token = token;
+    this.token = process.env.TOKEN || token;
+    this.ws = new WebSocket(webSocketServerUrl);
     this.ws.on('open', this.onOpen);
     this.ws.on('message', this.onMessage);
+    this.ws.on('error', this.onError);
   }
 }
 
